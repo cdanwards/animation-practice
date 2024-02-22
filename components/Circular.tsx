@@ -6,26 +6,16 @@ export default function Circular() {
 
   useEffect(() => {
     // withTiming or withSpring
-    console.log("Circular useEffect");
     Animated.loop(
       Animated.timing(progress, {
-        toValue: 2 * Math.PI,
+        toValue: 1,
         duration: 2000,
         useNativeDriver: true,
       })
-    ).start();
+    ).start(() => {
+      progress.setValue(0);
+    });
   }, [progress]);
-
-  const radius = 100.0;
-
-  const x = progress.interpolate({
-    inputRange: [0, 2 * Math.PI],
-    outputRange: [radius * Math.cos(0), radius * Math.cos(2 * Math.PI)], // Simplify to -radius to radius if needed
-  });
-  const y = progress.interpolate({
-    inputRange: [0, 2 * Math.PI],
-    outputRange: [radius * Math.sin(0), radius * Math.sin(2 * Math.PI)], // Simplify to -radius to radius if needed
-  });
 
   return (
     <View style={styles.container}>
@@ -35,10 +25,10 @@ export default function Circular() {
           {
             transform: [
               {
-                translateX: x,
-              },
-              {
-                translateY: y,
+                rotate: progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: ["0deg", "360deg"],
+                }),
               },
             ],
           },
@@ -51,13 +41,15 @@ export default function Circular() {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 100,
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
   animatedView: {
-    width: 50,
+    paddingTop: 30,
+    width: 20,
     height: 50,
     backgroundColor: "tomato",
     borderRadius: 25,
