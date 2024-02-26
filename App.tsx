@@ -4,6 +4,7 @@ import Rotation from "./components/Rotation";
 import Circular from "./components/Circular";
 import MultipleItemTranslation from "./components/MultipleItemTranslation";
 import OptionsSelector from "./components/OptionsSelector";
+import Carousel from "./components/Carousel";
 
 const options = [
   { value: "rotation", label: "Rotation", component: <Rotation /> },
@@ -11,6 +12,11 @@ const options = [
     value: "transform",
     label: "Multiple Items Translation",
     component: <MultipleItemTranslation />,
+  },
+  {
+    value: "carousel",
+    label: "Carousel",
+    component: <Carousel />,
   },
 ];
 
