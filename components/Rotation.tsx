@@ -67,7 +67,6 @@ const SIZE = 100.0;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 100,
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
@@ -81,6 +80,5 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 20,
     textAlign: "center",
-    margin: 60,
   },
 });

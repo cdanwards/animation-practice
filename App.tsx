@@ -3,18 +3,21 @@ import { ScrollView, StyleSheet, View, Text } from "react-native";
 import Rotation from "./components/Rotation";
 import Circular from "./components/Circular";
 import MultipleItemTranslation from "./components/MultipleItemTranslation";
+import OptionsSelector from "./components/OptionsSelector";
+
+const options = [
+  { value: "rotation", label: "Rotation", component: <Rotation /> },
+  {
+    value: "transform",
+    label: "Multiple Items Translation",
+    component: <MultipleItemTranslation />,
+  },
+];
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <Rotation />
-        {/* <Circular /> */}
-        <MultipleItemTranslation />
-      </ScrollView>
+      <OptionsSelector options={options} />
       <StatusBar style="auto" />
     </View>
   );
@@ -26,17 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  scrollView: {
-    flex: 1,
-    width: "100%",
     height: "100%",
-    paddingTop: 100,
-    // paddingBottom: 150,
-  },
-  contentContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 30,
+    width: "100%",
   },
 });
