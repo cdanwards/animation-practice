@@ -5,9 +5,11 @@ import Circular from "./components/Circular";
 import MultipleItemTranslation from "./components/MultipleItemTranslation";
 import OptionsSelector from "./components/OptionsSelector";
 import Carousel from "./components/Carousel";
+import CursorGestureHandler from "./components/CursorGestureHandler";
 
 const options = [
   { value: "rotation", label: "Rotation", component: <Rotation /> },
+  { value: "circular", label: "Circular", component: <Circular /> },
   {
     value: "transform",
     label: "Multiple Items Translation",
@@ -17,6 +19,11 @@ const options = [
     value: "carousel",
     label: "Carousel",
     component: <Carousel />,
+  },
+  {
+    value: "cursorGestureHandler",
+    label: "Cursor Gesture Handler",
+    component: <CursorGestureHandler />,
   },
 ];
 
