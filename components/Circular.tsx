@@ -3,6 +3,7 @@ import { Animated, View, Text, StyleSheet } from "react-native";
 
 export default function Circular() {
   const progress = useRef(new Animated.Value(0)).current;
+  const animatedViewRef = useRef<View>(null);
 
   useEffect(() => {
     // withTiming or withSpring
@@ -10,30 +11,28 @@ export default function Circular() {
       Animated.timing(progress, {
         toValue: 1,
         duration: 2000,
-        useNativeDriver: true,
+        useNativeDriver: false,
       })
-    ).start(() => {
-      progress.setValue(0);
-    });
-  }, [progress]);
+    ).start();
+  }, []);
+
+  progress.addListener(({ value }) => {
+    // calculate the angle of the circle
+    const angle = Math.PI * 2 * value;
+    // calculate the x and y based on the angle
+    const x = 100 * Math.cos(angle);
+    const y = 100 * Math.sin(angle);
+    // set the position of the animated view
+    if (animatedViewRef.current) {
+      (animatedViewRef.current as any).setNativeProps({
+        style: { transform: [{ translateX: x }, { translateY: y }] },
+      });
+    }
+  });
 
   return (
     <View style={styles.container}>
-      <Animated.View
-        style={[
-          styles.animatedView,
-          {
-            transform: [
-              {
-                rotate: progress.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ["0deg", "360deg"],
-                }),
-              },
-            ],
-          },
-        ]}
-      />
+      <Animated.View style={styles.animatedView} ref={animatedViewRef} />
       <Text style={styles.description}>Circular</Text>
     </View>
   );
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
   },
   animatedView: {
     paddingTop: 30,
-    width: 20,
+    width: 50,
     height: 50,
     backgroundColor: "tomato",
     borderRadius: 25,
