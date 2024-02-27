@@ -24,7 +24,7 @@ export default function Circular() {
     const y = 100 * Math.sin(angle);
     // set the position of the animated view
     if (animatedViewRef.current) {
-      (animatedViewRef.current as any).setNativeProps({
+      animatedViewRef.current.setNativeProps({
         style: { transform: [{ translateX: x }, { translateY: y }] },
       });
     }
