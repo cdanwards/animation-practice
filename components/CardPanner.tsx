@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { PanResponder, Animated, View, StyleSheet } from "react-native";
-import Card, { Cards } from "./Card";
 
 type CardPannerProps = {
   Card: React.FC;
@@ -11,9 +10,7 @@ export default function CardPanner({
   Card,
   initialYPosition,
 }: CardPannerProps) {
-  //   const pan = useRef(new Animated.ValueXY()).current;
-  const translateY = useRef(new Animated.Value(0)).current;
-
+  const translateY = useRef(new Animated.Value(initialYPosition)).current;
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
 
@@ -45,10 +42,8 @@ export default function CardPanner({
       }),
       onPanResponderRelease: (e, gestureState) => {
         if (gestureState.dy < -100) {
-          console.log("Swiping up");
           startAnimation();
         } else {
-          console.log("Springing to origin");
           Animated.spring(translateY, {
             toValue: 0,
             useNativeDriver: false,
