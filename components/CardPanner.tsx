@@ -57,13 +57,7 @@ export default function CardPanner({
     <View style={styles.overlay}>
       <Animated.View
         style={{
-          transform: [
-            {
-              translateY: initialYPosition,
-            },
-            { translateY: translateY },
-            { scale },
-          ],
+          transform: [{ translateY: translateY }, { scale }],
           opacity: opacity,
         }}
         {...panResponder.panHandlers}
