@@ -29,6 +29,11 @@ export default function CardPanner({
         duration: 500,
         useNativeDriver: true,
       }),
+      Animated.timing(translateY, {
+        toValue: -1000,
+        duration: 500,
+        useNativeDriver: true,
+      }),
     ]).start();
   };
 
@@ -40,8 +45,10 @@ export default function CardPanner({
       }),
       onPanResponderRelease: (e, gestureState) => {
         if (gestureState.dy < -100) {
+          console.log("Swiping up");
           startAnimation();
         } else {
+          console.log("Springing to origin");
           Animated.spring(translateY, {
             toValue: 0,
             useNativeDriver: false,
@@ -59,9 +66,10 @@ export default function CardPanner({
             {
               translateY: initialYPosition,
             },
-            // { translateX: pan.x },
             { translateY: translateY },
+            { scale },
           ],
+          opacity: opacity,
         }}
         {...panResponder.panHandlers}
       >
