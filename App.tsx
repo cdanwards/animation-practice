@@ -6,6 +6,7 @@ import MultipleItemTranslation from "./components/MultipleItemTranslation";
 import OptionsSelector from "./components/OptionsSelector";
 import Carousel from "./components/Carousel";
 import CursorGestureHandler from "./components/CursorGestureHandler";
+import Swipe from "./components/Swipe";
 
 const options = [
   { value: "rotation", label: "Rotation", component: <Rotation /> },
@@ -24,6 +25,11 @@ const options = [
     value: "cursorGestureHandler",
     label: "Cursor Gesture Handler",
     component: <CursorGestureHandler />,
+  },
+  {
+    value: "swipe",
+    label: "Swipe",
+    component: <Swipe />,
   },
 ];
 

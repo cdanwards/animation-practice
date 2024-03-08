@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { View, Text, Animated, useWindowDimensions } from "react-native";
 
-const CURSOR_SIDE_SIZE = 20;
+const CURSOR_SIDE_SIZE = 40;
 const CURSOR_HALF_SIDE_SIZE = CURSOR_SIDE_SIZE / 2;
 
 const CursorGestureHandler = () => {
